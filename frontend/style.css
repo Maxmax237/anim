@@ -1,0 +1,18 @@
+* { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; }
+body { background:#0f0f0f; color:white; }
+header { background:#000; padding:15px 20px; display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #ff6b00; position:sticky; top:0; }
+header h1 { color:#ff6b00; font-size:22px; }
+header a { color:white; text-decoration:none; margin-left:15px; font-weight:bold; }
+header a:hover { color:#ff6b00; }
+main { padding:20px; max-width:1100px; margin:auto; }
+h2 { font-size:28px; margin:20px 0 10px; }
+.btn { display:inline-block; background:#ff6b00; color:white; padding:12px 20px; border-radius:8px; text-decoration:none; font-weight:bold; margin:15px 0; }
+.card { background:#1e1e1e; padding:15px; border-radius:10px; margin:10px 0; border-left:4px solid #ff6b00; }
+.pricing { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:15px; margin-top:20px; }
+.plan { background:#1e1e1e; padding:20px; border-radius:12px; text-align:center; border:1px solid #333; }
+.plan.hot { border:2px solid #ff6b00; transform:scale(1.03); }
+.plan h3 { color:#ff6b00; margin-bottom:10px; }
+.plan p { font-size:22px; font-weight:bold; margin-bottom:10px; }
+.plan ul { list-style:none; margin:10px 0; font-size:14px; line-height:1.8; }
+.plan button { background:#ff6b00; color:white; border:none; padding:10px; width:100%; border-radius:8px; font-weight:bold; cursor:pointer; }
+input { width:100%; padding:12px; margin:8px 0; border-radius:8px; border:1px solid #333; background:#1e1e1e; color:white; }
