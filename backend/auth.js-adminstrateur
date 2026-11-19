@@ -1,0 +1,24 @@
+// NE JAMAIS mettre email + password en dur dans le code
+// Le super-admin est créé via variable d'environnement
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+// Création super-admin au premier lancement
+async function createSuperAdmin(email, plainPassword) {
+  const hashed = await bcrypt.hash(plainPassword, 12);
+  // INSERT INTO users (email, password_hash, role) VALUES (email, hashed, 'super_admin')
+  return hashed;
+}
+
+function login(email, password, userFromDB) {
+  const ok = bcrypt.compareSync(password, userFromDB.password_hash);
+  if (!ok) return null;
+  return jwt.sign({ id: userFromDB.id, role: userFromDB.role }, process.env.JWT_SECRET, { expiresIn: '2h' });
+}
+
+// Middleware : seul super_admin peut gérer tout
+function isSuperAdmin(req, res, next) {
+  if (req.user.role !== 'super_admin') return res.status(403).json({ error: 'Accès refusé' });
+  next();
+}
+module.exports = { createSuperAdmin, login, isSuperAdmin };
