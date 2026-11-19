@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Admin - Otaku Legal</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header><h1>OTAKU LEGAL CM</h1><a href="index.html">Retour</a></header>
+<main style="max-width:400px">
+  <h2>Connexion Super-Admin</h2>
+  <p style="color:#aaa; font-size:14px">Accès réservé. Mot de passe hashé + 2FA. Jamais en dur dans le code.</p>
+  <input type="email" id="email" placeholder="Email admin">
+  <input type="password" id="pass" placeholder="Mot de passe">
+  <input type="text" id="code2fa" placeholder="Code 2FA (6 chiffres)">
+  <button class="btn" style="width:100%" onclick="loginAdmin()">Se connecter</button>
+  <p id="msg"></p>
+</main>
+<script>
+async function loginAdmin(){
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('pass').value;
+  const code = document.getElementById('code2fa').value;
+  // En vrai, ça appelle ton backend /api/login
+  // Ici démo : on envoie au backend
+  const res = await fetch('/api/login', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({email, password, code}) });
+  if(res.ok){ localStorage.setItem('token','demo'); window.location.href='dashboard-admin.html'; }
+  else document.getElementById('msg').innerText = 'Identifiants incorrects';
+}
+</script>
+</body></html>
