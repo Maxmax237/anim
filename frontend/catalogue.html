@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Catalogue - OTAKU LEGAL CM</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header><h1>🔥 OTAKU LEGAL CM</h1><nav><a href="index.html">Accueil</a> <a href="offres.html">Offres</a> <a href="createur.html">Créateur</a></nav></header>
+<main>
+  <h2>Catalogue 100% Légal</h2>
+  <p style="color:#aaa">Uniquement des œuvres originales camerounaises + Creative Commons + trailers officiels.</p>
+
+  <!-- LECTEUR PRINCIPAL -->
+  <div class="card">
+    <h3>🎬 En ce moment : Les Aventures de Yaoundé - Ep 1</h3>
+    <video id="player" width="100%" controls poster="https://via.placeholder.com/800x450?text=OTAKU+LEGAL+CM">
+      <source src="videos/yaounde-ep1.mp4" type="video/mp4">
+      Ton navigateur ne supporte pas la vidéo.
+    </video>
+    <p style="margin-top:10px">Créateur : Max237 | Licence : Originale | Vues : 8 412</p>
+    <button class="btn" onclick="document.getElementById('player').play()">▶ Lecture</button>
+    <a href="offres.html" class="btn" style="background:#333">Passer Premium pour 1080p</a>
+  </div>
+
+  <!-- GRILLE CATALOGUE -->
+  <h2 style="margin-top:30px">Tous les animés</h2>
+  <div class="pricing">
+    <div class="plan" style="text-align:left">
+      <b>Les Aventures de Yaoundé</b><br><span style="color:#aaa;font-size:13px">Original CM - 12 épisodes</span><br><br>
+      <button class="btn" onclick="playVideo('videos/yaounde-ep1.mp4','Les Aventures de Yaoundé')">Regarder</button>
+    </div>
+    <div class="plan" style="text-align:left">
+      <b>Short Anime Libre</b><br><span style="color:#aaa;font-size:13px">Creative Commons - 5 min</span><br><br>
+      <button class="btn" onclick="playVideo('videos/short-cc.mp4','Short Anime Libre')">Regarder</button>
+    </div>
+    <div class="plan" style="text-align:left">
+      <b>Douala Cyber 237</b><br><span style="color:#aaa;font-size:13px">Original CM - 8 épisodes</span><br><br>
+      <button class="btn" onclick="playVideo('videos/douala.mp4','Douala Cyber 237')">Regarder</button>
+    </div>
+    <div class="plan" style="text-align:left">
+      <b>Trailer Officiel - YouTube</b><br><span style="color:#aaa;font-size:13px">Trailer officiel</span><br><br>
+      <button class="btn" style="background:#333" onclick="window.open('https://www.youtube.com/results?search_query=anime+official+trailer','_blank')">Voir sur YouTube</button>
+    </div>
+  </div>
+</main>
+<script>
+function playVideo(src, titre){
+  const p = document.getElementById('player');
+  p.src = src;
+  p.play();
+  window.scrollTo({top:0, behavior:'smooth'});
+  alert('Lecture : ' + titre);
+}
+</script>
+</body></html>
