@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><title>Payer - Otaku Legal</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header><h1>OTAKU LEGAL CM</h1><a href="offres.html">← Offres</a></header>
+<main style="max-width:500px">
+  <h2>Choisis ton offre</h2>
+  <select id="offre" style="width:100%;padding:12px;border-radius:8px;background:#1e1e1e;color:white">
+    <option value="500">Journalier - 500 FCFA</option>
+    <option value="2500">Hebdomadaire - 2 500 FCFA</option>
+    <option value="7500" selected>Mensuel - 7 500 FCFA ⭐ Le plus populaire</option>
+    <option value="75000">Annuel - 75 000 FCFA (2 mois offerts)</option>
+  </select>
+
+  <h2 style="margin-top:20px">Payer avec</h2>
+  <div class="pricing">
+    <div class="plan" onclick="selectPay('orange')" id="card-orange" style="cursor:pointer"><h3>🟠 Orange Money</h3><p>Orange CM</p></div>
+    <div class="plan" onclick="selectPay('momo')" id="card-momo" style="cursor:pointer"><h3>🟡 MTN MoMo</h3><p>MTN CM</p></div>
+  </div>
+
+  <input type="tel" id="phone" placeholder="Ex: 690 00 00 00">
+  <p style="color:#aaa;font-size:13px">Tu vas recevoir un code sur ton téléphone pour confirmer.</p>
+  <button class="btn" style="width:100%" onclick="payer()">Payer maintenant</button>
+  <p id="msg"></p>
+</main>
+<script>
+let methode = 'orange';
+function selectPay(m){ methode=m; document.getElementById('card-orange').style.border = m==='orange' ? '2px solid #ff6b00':'1px solid #333'; document.getElementById('card-momo').style.border = m==='momo' ? '2px solid yellow':'1px solid #333'; }
+selectPay('orange');
+async function payer(){
+  const montant = document.getElementById('offre').value;
+  const phone = document.getElementById('phone').value;
+  if(!phone) return document.getElementById('msg').innerText='Entre ton numéro d’abord';
+  document.getElementById('msg').innerText='Envoi de la demande à '+methode+'... Vérifie ton téléphone 📱';
+  // Appel backend
+  const res = await fetch('/api/payer', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({montant, phone, methode})});
+  if(res.ok) document.getElementById('msg').innerText='✅ Paiement confirmé ! Bienvenue Otaku Pro !';
+}
+</script>
+</body></html>
